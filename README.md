@@ -1,2 +1,2 @@
 # angularjs
-angularjs demo
+这是一个用AngularJS+BootStrap搭建的Angular学习站点
