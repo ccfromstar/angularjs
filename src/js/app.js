@@ -60,6 +60,14 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/location?foo&baz',
 			templateUrl: 'tpls/api/location.html'
 		})
+		.state('index.api.animate', {
+			url: '/animate',
+			templateUrl: 'tpls/api/animate.html'
+		})
+		.state('index.api.ng-repeat', {
+			url: '/ng-repeat',
+			templateUrl: 'tpls/api/ng-repeat.html'
+		})
 		.state('index.resource', {
 			url: '/resource',
 			views: {
