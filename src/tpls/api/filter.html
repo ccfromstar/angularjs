@@ -38,6 +38,11 @@
       <pre>{{ noanalysis_left}} "TANK is GOOD" | lowercase }}</pre>
       <pre>执行结果：{{ "TANK is GOOD" | lowercase}} </pre>
       <p>&nbsp;</p>
+      <h4>1.5 json</h4>
+      <p>将对象格式化成标准的JSON格式</p>
+      <pre ng-non-bindable>{{ {name:'Jack', age: 21} | json }}</pre>
+      <pre>执行结果：{{ {name:'Jack', age: 21} | json }} </pre>
+      <p>&nbsp;</p>
       <h3>二.自定义Filter</h3>
       <pre>angular.module('tanktest', []).filter('tankreplace', function() {  
   return function(input) {  
@@ -46,5 +51,10 @@
 });</pre>
 	  <pre>{{ noanalysis_left}} "tank is GOOD" | tankreplace }}</pre>
       <pre>执行结果：{{ "tank is GOOD" | tankreplace}} </pre>
+      <p>&nbsp;</p>
+      <h3>三.Filter可以被链式使用</h3>
+      <p ng-non-bindable>{{ expression | filter1 | filter2 | ... }}</p>
+      <pre ng-non-bindable>{{ "TANK is GOOD" | uppercase | tankreplace }}</pre>
+      <pre>执行结果：{{ "TANK is GOOD" | lowercase | tankreplace }} </pre>
    </div>
 </div>
