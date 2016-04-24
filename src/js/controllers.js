@@ -165,10 +165,63 @@ httptest.controller('HttpCtrl', function($scope, $http) {
  * @type {[type]}
  */
 var locationtest = angular.module('locationtest', []);
-locationtest.controller('LocationCtrl', function($scope,$location) {
+locationtest.controller('LocationCtrl', function($scope, $location) {
 	$scope.location_absUrl = $location.absUrl();
 	$scope.location_url = $location.url();
 	$scope.location_host = $location.host();
 	$scope.location_foo = $location.search().foo;
 	$scope.location_baz = $location.search()['baz'];
+});
+
+var factoryApp = angular.module("factoryApp", []);
+/*定义一个工厂对象，里面有一个乘法的方法multiply*/
+factoryApp.factory('MathService', function() {
+	var factory = {};
+	factory.multiply = function(a, b) {
+		return a * b;
+	}
+	return factory;
+});
+/*定义一个服务，计算次方*/
+factoryApp.service('CalcService', function(MathService) {
+	this.quare = function(a) {
+		return MathService.multiply(a, a);
+	}
+});
+/*在控制器里调用service*/
+factoryApp.controller('CalcController', function($scope, CalcService, MathService) {
+	$scope.square = function() {
+		$scope.result = CalcService.quare($scope.number);
+	}
+});
+
+var repeatApp = angular.module("repeatApp", []);
+repeatApp.controller("CartController", function($scope) {
+	$scope.items = [{
+		name: "商品1",
+		quantity: 1,
+		price: 199.00
+	}, {
+		name: "商品2",
+		quantity: 1,
+		price: 139.00
+	}, {
+		name: "商品3",
+		quantity: 2,
+		price: 84.20
+	}];
+
+	$scope.remove = function(index) {
+		$scope.items.splice(index, 1);
+	}
+});
+
+var applyApp = angular.module("applyApp", []);
+applyApp.controller("applyCtrl", function($scope) {
+	$scope.message = "Waiting 2000ms for update";
+	setTimeout(function() {　　
+		$scope.$apply(function() {　　
+			$scope.message = "Timeout called!";
+		});
+	}, 2000);
 });

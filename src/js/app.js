@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid','tanktest','httptest','locationtest', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid','applyApp','repeatApp','factoryApp','tanktest','httptest','locationtest', 'BookListModule', 'BookDetailModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -64,9 +64,17 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/animate',
 			templateUrl: 'tpls/api/animate.html'
 		})
+		.state('index.api.factory', {
+			url: '/factory',
+			templateUrl: 'tpls/api/factory.html'
+		})
 		.state('index.api.ng-repeat', {
 			url: '/ng-repeat',
 			templateUrl: 'tpls/api/ng-repeat.html'
+		})
+		.state('index.api.apply', {
+			url: '/apply',
+			templateUrl: 'tpls/api/apply.html'
 		})
 		.state('index.resource', {
 			url: '/resource',
