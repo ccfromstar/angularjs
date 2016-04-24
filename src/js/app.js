@@ -76,6 +76,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/apply',
 			templateUrl: 'tpls/api/apply.html'
 		})
+		.state('index.api.directive', {
+			url: '/directive',
+			templateUrl: 'tpls/api/directive.html'
+		})
 		.state('index.resource', {
 			url: '/resource',
 			views: {
