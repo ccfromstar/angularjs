@@ -225,3 +225,53 @@ applyApp.controller("applyCtrl", function($scope) {
 		});
 	}, 2000);
 });
+
+var appModule = angular.module('directiveapp', []);
+appModule.directive('hello', function() {
+    return {
+        restrict: 'E',
+        template: '<div>Hi there</div>',
+        replace: true
+    };
+});
+appModule.directive('hello2', function() {
+    return {
+        restrict: 'E',
+        template: '<div>Hi there <span ng-transclude></span></div>',
+        transclude: true
+    };
+});
+
+var expanderModule=angular.module('expanderModule', []);
+expanderModule.directive('expander', function() {
+    return {
+        restrict : 'EA',
+        replace : true,
+        transclude : true,
+        scope : {
+            title : '=expanderTitle'
+        },
+        template : '<div>'
+                 + '<div class="title" ng-click="toggle()">{{title}}</div>'
+                 + '<div class="body" ng-show="showMe" ng-transclude></div>'
+                 + '</div>',
+        link : function(scope, element, attrs) {
+            scope.showMe = false;
+            scope.toggle = function toggle() {
+                scope.showMe = !scope.showMe;
+            }
+        }
+    }
+});
+expanderModule.controller('SomeController',function($scope) {
+    $scope.title = '点击展开';
+    $scope.text = '这里是内部的内容。';
+});
+
+var resApp = angular.module('resApp',[]);
+resApp.controller('resCtrl',function($scope){
+	$scope.ress = [
+		{type:"视频",title:"AngularJS实战",url:"http://www.imooc.com/learn/156"},
+		{type:"文章",title:"angularjs directive 实例 详解",url:"http://blog.51yip.com/jsjquery/1607.html"}
+	];
+});
